@@ -82,6 +82,8 @@ function App() {
             <Route path="/FairnessStatement" element={<Layout currentPageName="FairnessStatement"><FairnessStatement /></Layout>} />
             <Route path="/FaithCommunities" element={<Layout currentPageName="FaithCommunities"><FaithCommunities /></Layout>} />
             <Route path="/FAQ" element={<Layout currentPageName="FAQ"><FAQ /></Layout>} />
+            <Route path="/FeaturedAuthors" element={<Layout currentPageName="FeaturedAuthors"><FeaturedAuthors /></Layout>} />
+            <Route path="/Founder" element={<Layout currentPageName="Founder"><Founder /></Layout>} />
             <Route path="/Submission" element={<Layout currentPageName="Submission"><Submission /></Layout>} />
             <Route path="/ApprovalPending" element={<Layout currentPageName="ApprovalPending"><ApprovalPending /></Layout>} />
             <Route path="/AuthorPortal" element={<Layout currentPageName="AuthorPortal"><AuthorPortal /></Layout>} />
