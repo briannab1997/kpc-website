@@ -298,7 +298,8 @@ export default function Layout({ children, currentPageName }) {
                 <Link to={createPageUrl('Collaborations')} className="block text-gray-400 hover:text-white text-sm transition-colors">Collaborations</Link>
                 <Link to={createPageUrl('FAQ')} className="block text-gray-400 hover:text-white text-sm transition-colors">FAQ</Link>
                 <Link to={createPageUrl('PrivacyPolicy')} className="block text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</Link>
-                <Link to={createPageUrl('TermsOfService')} className="block text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</Link>
+                <Link to={createPageUrl('TermsAndConditions')} className="block text-gray-400 hover:text-white text-sm transition-colors">Terms and Conditions</Link>
+                <Link to={createPageUrl('CancellationPolicy')} className="block text-gray-400 hover:text-white text-sm transition-colors">Cancellation Policy</Link>
               </div>
             </div>
             <div>

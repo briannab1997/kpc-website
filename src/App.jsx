@@ -54,6 +54,9 @@ import YouthAtRisk from './pages/YouthAtRisk';
 import ApprovalPending from './pages/ApprovalPending';
 import AuthorPortal from './pages/AuthorPortal';
 import AuthorProfile from './pages/AuthorProfile';
+import CancellationPolicy from './pages/CancellationPolicy';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 const queryClient = new QueryClient();
 
@@ -115,6 +118,9 @@ function App() {
             <Route path="/Team" element={<Layout currentPageName="Team"><Team /></Layout>} />
             <Route path="/Veterans" element={<Layout currentPageName="Veterans"><Veterans /></Layout>} />
             <Route path="/YouthAtRisk" element={<Layout currentPageName="YouthAtRisk"><YouthAtRisk /></Layout>} />
+            <Route path="/CancellationPolicy" element={<Layout currentPageName="CancellationPolicy"><CancellationPolicy /></Layout>} />
+            <Route path="/PrivacyPolicy" element={<Layout currentPageName="PrivacyPolicy"><PrivacyPolicy /></Layout>} />
+            <Route path="/TermsAndConditions" element={<Layout currentPageName="TermsAndConditions"><TermsAndConditions /></Layout>} />
             <Route path="*" element={<Layout currentPageName="NotFound"><div className="p-20 text-center"><h1 className="text-4xl font-bold text-gray-900">Page Not Found</h1></div></Layout>} />
           </Routes>
         </Router>
