@@ -55,6 +55,7 @@ import ApprovalPending from './pages/ApprovalPending';
 import AuthorPortal from './pages/AuthorPortal';
 import AuthorProfile from './pages/AuthorProfile';
 import CancellationPolicy from './pages/CancellationPolicy';
+import Login from './pages/Login';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 
@@ -121,6 +122,7 @@ function App() {
             <Route path="/CancellationPolicy" element={<Layout currentPageName="CancellationPolicy"><CancellationPolicy /></Layout>} />
             <Route path="/PrivacyPolicy" element={<Layout currentPageName="PrivacyPolicy"><PrivacyPolicy /></Layout>} />
             <Route path="/TermsAndConditions" element={<Layout currentPageName="TermsAndConditions"><TermsAndConditions /></Layout>} />
+            <Route path="/Login" element={<Login />} />
             <Route path="*" element={<Layout currentPageName="NotFound"><div className="p-20 text-center"><h1 className="text-4xl font-bold text-gray-900">Page Not Found</h1></div></Layout>} />
           </Routes>
         </Router>
