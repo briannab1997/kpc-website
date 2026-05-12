@@ -104,37 +104,39 @@ export default function Login() {
         </div>
 
         <Card className="shadow-lg">
-          <CardContent className="pt-6">
+          <CardContent className="p-8">
             <Tabs defaultValue="signin">
-              <TabsList className="grid grid-cols-2 w-full mb-6">
+              <TabsList className="grid grid-cols-2 w-full mb-8">
                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                 <TabsTrigger value="signup">Create Account</TabsTrigger>
               </TabsList>
 
               <TabsContent value="signin">
-                <form onSubmit={handleSignIn} className="space-y-4">
+                <form onSubmit={handleSignIn} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <Input
                       type="email"
                       required
                       value={signInData.email}
                       onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
                       placeholder="you@example.com"
+                      className="h-11"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                     <Input
                       type="password"
                       required
                       value={signInData.password}
                       onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
                       placeholder="••••••••"
+                      className="h-11"
                     />
                   </div>
                   {error && <p className="text-red-600 text-sm">{error}</p>}
-                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white">
+                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11 mt-2">
                     {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                     Sign In
                   </Button>
@@ -142,53 +144,57 @@ export default function Login() {
               </TabsContent>
 
               <TabsContent value="signup">
-                <form onSubmit={handleSignUp} className="space-y-4">
+                <form onSubmit={handleSignUp} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <Input
                       type="text"
                       required
                       value={signUpData.full_name}
                       onChange={(e) => setSignUpData({ ...signUpData, full_name: e.target.value })}
                       placeholder="Your full name"
+                      className="h-11"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <Input
                       type="email"
                       required
                       value={signUpData.email}
                       onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
                       placeholder="you@example.com"
+                      className="h-11"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                     <Input
                       type="password"
                       required
                       value={signUpData.password}
                       onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
                       placeholder="At least 6 characters"
+                      className="h-11"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
                     <Input
                       type="password"
                       required
                       value={signUpData.confirm_password}
                       onChange={(e) => setSignUpData({ ...signUpData, confirm_password: e.target.value })}
                       placeholder="••••••••"
+                      className="h-11"
                     />
                   </div>
                   {error && <p className="text-red-600 text-sm">{error}</p>}
-                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white">
+                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11 mt-2">
                     {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                     Create Account
                   </Button>
-                  <p className="text-xs text-gray-500 text-center">
+                  <p className="text-xs text-gray-500 text-center pt-1">
                     New accounts are reviewed before access is granted.
                   </p>
                 </form>
