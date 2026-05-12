@@ -4,8 +4,7 @@ import { supabase } from "@/api/supabaseClient";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, BookOpen } from "lucide-react";
 
 export default function Login() {
@@ -15,6 +14,7 @@ export default function Login() {
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [signUpData, setSignUpData] = useState({ full_name: "", email: "", password: "", confirm_password: "" });
   const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [activeTab, setActiveTab] = useState("signin");
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -105,101 +105,109 @@ export default function Login() {
 
         <Card className="shadow-lg">
           <CardContent className="p-8">
-            <Tabs defaultValue="signin">
-              <TabsList className="grid grid-cols-2 w-full mb-8">
-                <TabsTrigger value="signin">Sign In</TabsTrigger>
-                <TabsTrigger value="signup">Create Account</TabsTrigger>
-              </TabsList>
+            <div className="flex w-full mb-8 border-b border-gray-200">
+              <button
+                onClick={() => { setActiveTab("signin"); setError(""); }}
+                className={`flex-1 pb-3 text-sm font-medium transition-colors ${activeTab === "signin" ? "border-b-2 border-red-600 text-red-600" : "text-gray-500 hover:text-gray-700"}`}
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => { setActiveTab("signup"); setError(""); }}
+                className={`flex-1 pb-3 text-sm font-medium transition-colors ${activeTab === "signup" ? "border-b-2 border-red-600 text-red-600" : "text-gray-500 hover:text-gray-700"}`}
+              >
+                Create Account
+              </button>
+            </div>
 
-              <TabsContent value="signin">
-                <form onSubmit={handleSignIn} className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <Input
-                      type="email"
-                      required
-                      value={signInData.email}
-                      onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
-                      placeholder="you@example.com"
-                      className="h-11"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                    <Input
-                      type="password"
-                      required
-                      value={signInData.password}
-                      onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
-                      placeholder="••••••••"
-                      className="h-11"
-                    />
-                  </div>
-                  {error && <p className="text-red-600 text-sm">{error}</p>}
-                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11 mt-2">
-                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                    Sign In
-                  </Button>
-                </form>
-              </TabsContent>
+            {activeTab === "signin" && (
+              <form onSubmit={handleSignIn} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <Input
+                    type="email"
+                    required
+                    value={signInData.email}
+                    onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
+                    placeholder="you@example.com"
+                    className="h-11 w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                  <Input
+                    type="password"
+                    required
+                    value={signInData.password}
+                    onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
+                    placeholder="••••••••"
+                    className="h-11 w-full"
+                  />
+                </div>
+                {error && <p className="text-red-600 text-sm">{error}</p>}
+                <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11">
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                  Sign In
+                </Button>
+              </form>
+            )}
 
-              <TabsContent value="signup">
-                <form onSubmit={handleSignUp} className="space-y-5">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <Input
-                      type="text"
-                      required
-                      value={signUpData.full_name}
-                      onChange={(e) => setSignUpData({ ...signUpData, full_name: e.target.value })}
-                      placeholder="Your full name"
-                      className="h-11"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                    <Input
-                      type="email"
-                      required
-                      value={signUpData.email}
-                      onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
-                      placeholder="you@example.com"
-                      className="h-11"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                    <Input
-                      type="password"
-                      required
-                      value={signUpData.password}
-                      onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
-                      placeholder="At least 6 characters"
-                      className="h-11"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
-                    <Input
-                      type="password"
-                      required
-                      value={signUpData.confirm_password}
-                      onChange={(e) => setSignUpData({ ...signUpData, confirm_password: e.target.value })}
-                      placeholder="••••••••"
-                      className="h-11"
-                    />
-                  </div>
-                  {error && <p className="text-red-600 text-sm">{error}</p>}
-                  <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11 mt-2">
-                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                    Create Account
-                  </Button>
-                  <p className="text-xs text-gray-500 text-center pt-1">
-                    New accounts are reviewed before access is granted.
-                  </p>
-                </form>
-              </TabsContent>
-            </Tabs>
+            {activeTab === "signup" && (
+              <form onSubmit={handleSignUp} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                  <Input
+                    type="text"
+                    required
+                    value={signUpData.full_name}
+                    onChange={(e) => setSignUpData({ ...signUpData, full_name: e.target.value })}
+                    placeholder="Your full name"
+                    className="h-11 w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                  <Input
+                    type="email"
+                    required
+                    value={signUpData.email}
+                    onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
+                    placeholder="you@example.com"
+                    className="h-11 w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                  <Input
+                    type="password"
+                    required
+                    value={signUpData.password}
+                    onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
+                    placeholder="At least 6 characters"
+                    className="h-11 w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                  <Input
+                    type="password"
+                    required
+                    value={signUpData.confirm_password}
+                    onChange={(e) => setSignUpData({ ...signUpData, confirm_password: e.target.value })}
+                    placeholder="••••••••"
+                    className="h-11 w-full"
+                  />
+                </div>
+                {error && <p className="text-red-600 text-sm">{error}</p>}
+                <Button type="submit" disabled={isLoading} className="w-full ribbon-button text-white h-11">
+                  {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                  Create Account
+                </Button>
+                <p className="text-xs text-gray-500 text-center pt-1">
+                  New accounts are reviewed before access is granted.
+                </p>
+              </form>
+            )}
           </CardContent>
         </Card>
 
