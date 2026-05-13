@@ -27,8 +27,14 @@ export default function Login() {
       });
       if (error) throw error;
 
-      const userType = data.user?.user_metadata?.user_type || "author";
-      const isApproved = data.user?.user_metadata?.is_approved;
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_approved, user_type')
+        .eq('id', data.user.id)
+        .single();
+
+      const userType = profile?.user_type || data.user?.user_metadata?.user_type || "author";
+      const isApproved = profile?.is_approved;
 
       if (userType === "admin" || userType === "Staff" || userType?.startsWith("Intern")) {
         navigate(createPageUrl("StaffDashboard"));
