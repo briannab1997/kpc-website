@@ -138,15 +138,20 @@ export default function Dashboard() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const role = user?.user_metadata?.role;
-        const userType = user?.user_metadata?.user_type || '';
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('is_approved, user_type')
+          .eq('id', user.id)
+          .single();
 
-        if (role === 'admin' || userType?.startsWith('Intern')) {
+        const userType = profile?.user_type || user?.user_metadata?.user_type || '';
+
+        if (userType === 'admin' || userType === 'Staff' || userType?.startsWith('Intern')) {
           navigate(createPageUrl("StaffDashboard"));
           return;
         }
 
-        const isApproved = user?.user_metadata?.is_approved;
+        const isApproved = profile?.is_approved;
         if (!isApproved) {
           navigate(createPageUrl("ApprovalPending"));
           return;

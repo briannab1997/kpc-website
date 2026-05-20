@@ -78,7 +78,7 @@ export default function Submission() {
       });
 
       setSubmissionStatus("success");
-      setTimeout(() => navigate(createPageUrl("Dashboard")), 3000);
+      setTimeout(() => navigate(createPageUrl("AuthorPortal")), 3000);
     } catch (error) {
       console.error("Submission failed:", error);
       setSubmissionStatus("error");
