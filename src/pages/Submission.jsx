@@ -128,7 +128,7 @@ export default function Submission() {
           <CardContent>
             <div className="bg-gradient-to-r from-red-50 to-cream-50 rounded-xl p-6 mb-8">
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">September 2025 - December 2025 Publishing Cycle</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">2026 Publishing Cycle</h3>
                 <p className="text-gray-600 mb-4">
                   For initial inquiries or to get your work considered for our upcoming cycle, please use our inquiry form.
                 </p>
