@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/api/supabaseClient";
 import { Loader2, LayoutDashboard, Users, BookOpen, FileText, Settings, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -15,14 +16,38 @@ const navItems = [
 export default function StaffLayout({ children }) {
   const { user, isLoadingAuth, signOut } = useAuth();
   const navigate = useNavigate();
+  const [isCheckingProfile, setIsCheckingProfile] = useState(true);
 
   useEffect(() => {
-    if (!isLoadingAuth && (!user || user?.user_metadata?.role !== 'admin')) {
+    if (isLoadingAuth) return;
+
+    if (!user) {
       navigate('/');
+      return;
     }
+
+    const checkProfile = async () => {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('user_type')
+        .eq('id', user.id)
+        .single();
+
+      const userType = profile?.user_type || '';
+      const isStaff = userType === 'admin' || userType === 'Staff' || userType?.startsWith('Intern');
+
+      if (!isStaff) {
+        navigate('/');
+        return;
+      }
+
+      setIsCheckingProfile(false);
+    };
+
+    checkProfile();
   }, [user, isLoadingAuth]);
 
-  if (isLoadingAuth) {
+  if (isLoadingAuth || isCheckingProfile) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <Loader2 className="w-8 h-8 animate-spin text-red-600" />
