@@ -50,7 +50,7 @@ export default function AuthorPortal() {
         ] = await Promise.all([
           supabase.from('authors').select('*'),
           supabase.from('crm_phases').select('*').order('phase_order'),
-          supabase.from('crm_workflow_tasks').select('*').order('task_order'),
+          supabase.from('crm_workflow_tasks').select('*').order('phase_id'),
           supabase.from('crm_author_tasks').select('*'),
         ]);
 

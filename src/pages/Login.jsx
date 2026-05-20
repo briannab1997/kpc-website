@@ -33,13 +33,8 @@ export default function Login() {
         .eq('id', data.user.id)
         .single();
 
-      console.log('profile:', profile);
-      console.log('profileError:', profileError);
-
       const userType = profile?.user_type || data.user?.user_metadata?.user_type || "author";
       const isApproved = profile?.is_approved;
-
-      console.log('userType:', userType, 'isApproved:', isApproved);
 
       if (userType === "admin" || userType === "Staff" || userType?.startsWith("Intern")) {
         navigate(createPageUrl("StaffDashboard"));
