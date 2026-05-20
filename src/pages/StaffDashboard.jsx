@@ -200,12 +200,27 @@ function InternDashboardContent() {
 
 export default function StaffDashboard() {
   const { user } = useAuth();
+  const [userType, setUserType] = useState('');
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchType = async () => {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('user_type')
+        .eq('id', user.id)
+        .single();
+      setUserType(profile?.user_type || '');
+    };
+    fetchType();
+  }, [user]);
+
+  const isAdmin = userType === 'admin' || userType === 'Staff';
+
   return (
     <StaffLayout>
-      {user && (
-        user.user_metadata?.role === 'admin'
-          ? <AdminDashboardContent />
-          : <InternDashboardContent />
+      {userType && (
+        isAdmin ? <AdminDashboardContent /> : <InternDashboardContent />
       )}
     </StaffLayout>
   );
