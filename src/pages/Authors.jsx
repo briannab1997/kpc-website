@@ -276,7 +276,7 @@ export default function Authors() {
     </div>
   );
 
-  const renderSection = (title, authors, sectionId, sectionColor) => {
+  const renderSection = (title, authors, sectionId, sectionColor, bgClass = "bg-white") => {
     const filtered = authors.filter(author => {
       if (!searchQuery) return true;
       const query = searchQuery.toLowerCase();
@@ -288,7 +288,7 @@ export default function Authors() {
     });
 
     return (
-      <section className="py-20 bg-white">
+      <section className={`py-20 ${bgClass}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-4xl font-bold text-gray-900">{title}</h2>
@@ -407,11 +407,9 @@ export default function Authors() {
       </section>
 
       <DragDropContext onDragEnd={handleDragEnd}>
-        {renderSection(pageContent.available_title, availableAuthors, "available_now", "from-red-600 to-red-700 group-hover:from-red-700 group-hover:to-red-800")}
-        <div className="bg-gradient-to-r from-red-50 to-cream-50">
-          {renderSection(pageContent.upcoming_title, upcomingAuthors, "upcoming", "from-orange-600 to-red-600 group-hover:from-orange-700 group-hover:to-red-700")}
-        </div>
-        {renderSection(pageContent.forthcoming_title, forthcoming2026Authors, "forthcoming_2026", "from-indigo-600 to-purple-600 group-hover:from-indigo-700 group-hover:to-purple-700")}
+        {renderSection(pageContent.available_title, availableAuthors, "available_now", "from-red-600 to-red-700 group-hover:from-red-700 group-hover:to-red-800", "bg-white")}
+        {renderSection(pageContent.upcoming_title, upcomingAuthors, "upcoming", "from-orange-600 to-red-600 group-hover:from-orange-700 group-hover:to-red-700", "bg-gradient-to-r from-red-50 to-cream-50")}
+        {renderSection(pageContent.forthcoming_title, forthcoming2026Authors, "forthcoming_2026", "from-indigo-600 to-purple-600 group-hover:from-indigo-700 group-hover:to-purple-700", "bg-white")}
       </DragDropContext>
 
       {/* CTA Section */}

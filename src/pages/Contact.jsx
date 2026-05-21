@@ -40,12 +40,13 @@ export default function Contact() {
     setSubmissionStatus(null);
 
     try {
-      await supabase.from('contact_submissions').insert({
+      const { error: insertError } = await supabase.from('contact_submissions').insert({
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
         message: formData.message,
       });
+      if (insertError) throw insertError;
       setSubmissionStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
@@ -178,7 +179,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Phone</h3>
-                      <span className="text-gray-600">UK: +44 07385 814888</span>
+                      <span className="text-gray-600">UK: +44 7385 814888</span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">

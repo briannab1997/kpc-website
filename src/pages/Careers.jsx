@@ -168,9 +168,6 @@ export default function Careers() {
                             <CheckCircle className="w-4 h-4 mr-2" />
                             Position Filled
                           </div>
-                          <div className="text-sm text-gray-500">
-                            {hire.applicants !== "N/A" ? `${hire.applicants} applicants` : "Multiple applicants"}
-                          </div>
                         </div>
                       </div>
                     </CardContent>
