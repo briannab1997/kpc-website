@@ -99,6 +99,7 @@ export default function Books() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortBy, setSortBy] = useState("display_order");
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentUpcomingPage, setCurrentUpcomingPage] = useState(1);
   const [booksPerPage] = useState(6);
 
   const fetchBooks = async () => {
@@ -255,11 +256,15 @@ export default function Books() {
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentPublishedBooks = filteredPublishedBooks.slice(indexOfFirstBook, indexOfLastBook);
   const totalPublishedPages = Math.ceil(filteredPublishedBooks.length / booksPerPage);
-  const currentUpcomingBooks = filteredUpcomingBooks.slice(indexOfFirstBook, indexOfLastBook);
+
+  const indexOfLastUpcomingBook = currentUpcomingPage * booksPerPage;
+  const indexOfFirstUpcomingBook = indexOfLastUpcomingBook - booksPerPage;
+  const currentUpcomingBooks = filteredUpcomingBooks.slice(indexOfFirstUpcomingBook, indexOfLastUpcomingBook);
   const totalUpcomingPages = Math.ceil(filteredUpcomingBooks.length / booksPerPage);
 
   useEffect(() => {
     setCurrentPage(1);
+    setCurrentUpcomingPage(1);
   }, [searchQuery, genreFilter, yearFilter, priceFilter, countryFilter, statusFilter, sortBy]);
 
   if (isLoading) {
@@ -586,15 +591,15 @@ export default function Books() {
 
               {totalUpcomingPages > 1 && (
                 <div className="flex items-center justify-center gap-2 mt-8">
-                  <Button variant="outline" onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1}>Previous</Button>
+                  <Button variant="outline" onClick={() => setCurrentUpcomingPage(p => Math.max(1, p - 1))} disabled={currentUpcomingPage === 1}>Previous</Button>
                   <div className="flex gap-2">
                     {[...Array(totalUpcomingPages)].map((_, i) => (
-                      <Button key={i} variant={currentPage === i + 1 ? "default" : "outline"} onClick={() => setCurrentPage(i + 1)} className={currentPage === i + 1 ? "bg-red-600 hover:bg-red-700" : ""}>
+                      <Button key={i} variant={currentUpcomingPage === i + 1 ? "default" : "outline"} onClick={() => setCurrentUpcomingPage(i + 1)} className={currentUpcomingPage === i + 1 ? "bg-red-600 hover:bg-red-700" : ""}>
                         {i + 1}
                       </Button>
                     ))}
                   </div>
-                  <Button variant="outline" onClick={() => setCurrentPage(p => Math.min(totalUpcomingPages, p + 1))} disabled={currentPage === totalUpcomingPages}>Next</Button>
+                  <Button variant="outline" onClick={() => setCurrentUpcomingPage(p => Math.min(totalUpcomingPages, p + 1))} disabled={currentUpcomingPage === totalUpcomingPages}>Next</Button>
                 </div>
               )}
             </>

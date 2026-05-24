@@ -4,7 +4,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { createPageUrl } from '@/utils';
 import {
   Menu, X, ChevronDown, LogOut,
-  Mail, Phone, MapPin, Search
+  Mail, Phone, MapPin
 } from 'lucide-react';
 
 const Facebook = (props) => (
