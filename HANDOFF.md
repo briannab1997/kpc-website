@@ -1,6 +1,6 @@
 # Kentish Publishing Company: Website Handoff Guide
 **Prepared by:** Brianna Brockington, Senior Software Engineer Intern  
-**Date:** May 2026  
+**Date:** July 2026  
 **For:** Esther Ruth Kentish, CEO
 
 ---
@@ -29,7 +29,7 @@ No technical background needed. Each section is written in plain, straightforwar
 12. [The Author Portal](#12-the-author-portal)
 13. [Manuscript Submissions](#13-manuscript-submissions)
 14. [Contact Form Submissions](#14-contact-form-submissions)
-15. [Connecting Your Custom Domain](#15-connecting-your-custom-domain)
+15. [Your Custom Domain](#15-your-custom-domain)
 16. [Updating Social Media Links](#16-updating-social-media-links)
 17. [Need Help?](#17-need-help)
 
@@ -39,7 +39,7 @@ No technical background needed. Each section is written in plain, straightforwar
 
 | Item | Details |
 |------|---------|
-| **Live site** | Deployed on Vercel (custom domain pending, see Section 15) |
+| **Live site** | https://www.kentishpublishingcompany.com |
 | **GitHub repository** | https://github.com/briannab1997/kpc-website |
 | **Database** | Supabase: https://vdvcrssrmwyjonrlexun.supabase.co |
 | **File storage** | Supabase Storage (uploads bucket) |
@@ -277,24 +277,20 @@ To view them:
 
 ---
 
-## 15. Connecting Your Custom Domain
+## 15. Your Custom Domain
 
-Once you have your IONOS login ready, follow these steps to connect your domain:
+Your website is live at **https://www.kentishpublishingcompany.com**.
 
-### Step 1: Get your Vercel domain settings
-1. Go to https://vercel.com and log in
-2. Open the **kpc-website** project
-3. Go to **Settings**, then **Domains**
-4. Click **Add Domain** and type your domain name (e.g. kentishpublishingcompany.com)
-5. Vercel will display the DNS records you need to add
+The domain was connected in July 2026 by adding the following DNS records in IONOS:
 
-### Step 2: Update your DNS in IONOS
-1. Log in to your IONOS account
-2. Go to **Domains and SSL**, find your domain, then click **DNS**
-3. Add the records Vercel gave you (usually an A record and a CNAME record)
-4. Save the changes
+| Type | Host | Value |
+|------|------|-------|
+| A | @ | 216.198.79.1 |
+| CNAME | www | 574077d5ecb1f40f.vercel-dns-017.com |
 
-DNS changes can take anywhere from a few hours to 48 hours to fully go through, but it usually happens pretty quickly.
+These records point your IONOS domain to Vercel where the site is hosted. You should not need to change these unless you move hosting providers.
+
+If you ever need to reconnect or verify the domain, log in to https://vercel.com, open the kpc-website project, go to **Settings**, then **Domains**.
 
 ---
 
