@@ -168,8 +168,8 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Email</h3>
-                      <a href="mailto:contact@kentishpublishingcompany.com" className="text-red-600 hover:underline">
-                        contact@kentishpublishingcompany.com
+                      <a href="mailto:kentishpublishing@gmail.com" className="text-red-600 hover:underline">
+                        kentishpublishing@gmail.com
                       </a>
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-gray-900">Phone</h3>
-                      <span className="text-gray-600">UK: +44 7385 814888</span>
+                      <span className="text-gray-600">(281) 810-1410</span>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">

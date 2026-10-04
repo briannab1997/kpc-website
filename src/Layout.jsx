@@ -305,13 +305,13 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <a href="mailto:contact@kentishpublishingcompany.com" className="flex items-center hover:text-white transition-colors">
+                <a href="mailto:kentishpublishing@gmail.com" className="flex items-center hover:text-white transition-colors">
                   <Mail className="w-4 h-4 mr-2" />
-                  contact@kentishpublishingcompany.com
+                  kentishpublishing@gmail.com
                 </a>
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" />
-                  <span>UK: +44 07385 814888</span>
+                  <span>(281) 810-1410</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />
